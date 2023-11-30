@@ -1,0 +1,13 @@
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  lint_unit_tests:
+    name: Analyze & Test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout local repository
+        uses: actions/checkout@v4
