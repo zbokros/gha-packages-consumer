@@ -1,0 +1,30 @@
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  lint_unit_tests:
+    name: Analyze & Test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout local repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - run: echo "demo1" >> demo.txt
+
+      - run: |
+          git config --local user.email "test@test.com"
+          git config --local user.name "Test"
+          git commit -a -m "Add changes"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.PAT_TOKEN }}
+          force_with_lease: true
