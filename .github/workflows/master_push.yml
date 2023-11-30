@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.PAT_TOKEN }}
 
-      - run: echo "demo1" >> demo.txt
+      - run: echo "demo2" >> demo.txt
 
       - run: |
           git config --local user.email "test@test.com"
